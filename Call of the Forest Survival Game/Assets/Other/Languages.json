@@ -1,0 +1,22 @@
+{
+    "en": {
+        "main_menu": "Main Menu",
+        "exit": "Exit",
+        "settings": "Settings"
+    },
+    "ru": {
+        "main_menu": "Главное меню",
+        "exit": "Выход",
+        "settings": "Настройки"
+    },
+    "uk": {
+        "main_menu": "Головне меню",
+        "exit": "Вихід",
+        "settings": "Налаштування"
+    },
+    "cs": {
+        "main_menu": "Hlavní menu",
+        "exit": "Ukončit",
+        "settings": "Nastavení"
+    }
+}
