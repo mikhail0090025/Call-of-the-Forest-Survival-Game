@@ -7,12 +7,12 @@ public enum Languages { English, Russian, Ukrainian, Czech};
 public static class LanguageManager
 {
     public static Languages GameLanguage;
-    const string PathToJSON = "Languages.json";
-    const string PathToJSONdebug = "Other/Languages.json";
+    static string PathToJSON = Application.dataPath + @"\Languages.json";
+    static string PathToJSONdebug = Application.dataPath + @"\Other\Languages.json";
     static dynamic SerializedLanguages;
     public static void Init()
     {
-        if (Application.isEditor)
+        if (Application.isEditor && File.Exists(PathToJSONdebug))
         {
             using (StreamReader stream = new StreamReader(PathToJSONdebug))
             {

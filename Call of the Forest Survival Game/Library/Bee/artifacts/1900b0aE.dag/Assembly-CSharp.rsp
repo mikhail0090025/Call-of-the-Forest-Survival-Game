@@ -349,7 +349,12 @@
 "Assets/Scripts/Global/GlobalInit.cs"
 "Assets/Scripts/Global/LanguageManager.cs"
 "Assets/Scripts/Global/SceneLoader.cs"
-"Assets/Scripts/Small/GetTextByLanguage.cs"
+"Assets/Scripts/Global/SettingsManager.cs"
+"Assets/Scripts/MenuScripts/LoadingScene.cs"
+"Assets/Scripts/MenuScripts/LoadSettings.cs"
+"Assets/Scripts/Small/UI/ButtonQuit.cs"
+"Assets/Scripts/Small/UI/ButtonSceneLoad.cs"
+"Assets/Scripts/Small/UI/GetTextByLanguage.cs"
 -langversion:9.0
 
 /deterministic
