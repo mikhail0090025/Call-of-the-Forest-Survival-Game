@@ -17,7 +17,11 @@ public class LoadSettings : MonoBehaviour
         }
         else
         {
-            var settings = new SettingsManager.Settings(800, 600, false);
+            var settings = new SettingsManager.Settings(1920, 1080, true);
+            settings.WriteMe();
+            SettingsManager.SetSettings(settings);
+            SettingsManager.ApplySettings();
+            SettingsManager.SaveSettingsToComp();
         }
     }
     void Start()
