@@ -18,7 +18,10 @@ public class PersonController : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] Rigidbody PlayerRigidbody;
     [SerializeField] float speed;
+    [SerializeField] float JumpHeight;
     Quaternion originalRotation;
+    [SerializeField] Transform ForwardPoint;
+    [SerializeField] Transform RightPoint;
     void Start()
     {
         Cursor.visible = false;
@@ -61,7 +64,23 @@ public class PersonController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.forward, Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position, Time.deltaTime * speed);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position, Time.deltaTime * -speed);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * -speed);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * speed);
+        }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Vector3.up, Time.deltaTime * JumpHeight);
         }
     }
 }
