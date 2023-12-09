@@ -4,83 +4,43 @@ using UnityEngine;
 
 public class PersonController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public enum RotationAxes { MouseXandY = 0, MouxeX = 1, MouseY = 2 };
-    [SerializeField] RotationAxes axes = RotationAxes.MouseXandY;
-    [SerializeField] float SensivityX = 2f;
-    [SerializeField] float SensivityY = 2f;
-    [SerializeField] float MinX = -360f;
-    [SerializeField] float MaxX = 360f;
-    [SerializeField] float MinY = -360f;
-    [SerializeField] float MaxY = 360f;
-    float RotX = 0f;
-    float RotY = 0f;
-    [SerializeField] Transform player;
-    [SerializeField] Rigidbody PlayerRigidbody;
-    [SerializeField] float speed;
+    [SerializeField] float WalkSpeed;
+    [SerializeField] float RunSpeed;
     [SerializeField] float JumpHeight;
-    Quaternion originalRotation;
     [SerializeField] Transform ForwardPoint;
     [SerializeField] Transform RightPoint;
+    [SerializeField] Transform UpPoint;
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        PlayerRigidbody.freezeRotation = true;
-        originalRotation = transform.localRotation;
     }
-    public static float ClampAngle(float angle, float min, float max)
-    {
-        if (angle < -360f) angle += 360f;
-        if (angle > 360f) angle -= -360f;
-        return Mathf.Clamp(angle, min, max);
-    }
-    // Update is called once per frame
     void Update()
     {
-        if (axes == RotationAxes.MouseXandY)
-        {
-            RotX += Input.GetAxis("Mouse X") * SensivityX;
-            RotY += Input.GetAxis("Mouse Y") * SensivityY;
-            RotX = ClampAngle(RotX, MinX, MaxX);
-            RotY = ClampAngle(RotY, MinY, MaxY);
-            Quaternion XQuaternion = Quaternion.AngleAxis(RotX, Vector3.up);
-            Quaternion YQuaternion = Quaternion.AngleAxis(RotY, -Vector3.right);
-            transform.localRotation = originalRotation * XQuaternion * YQuaternion;
-        }
-        if (axes == RotationAxes.MouxeX)
-        {
-            RotX += Input.GetAxis("Mouse X") * SensivityX;
-            RotX = ClampAngle(RotX, MinX, MaxX);
-            Quaternion XQuaternion = Quaternion.AngleAxis(RotX, Vector3.up);
-            transform.localRotation = originalRotation * XQuaternion;
-        }
-        if (axes == RotationAxes.MouseY)
-        {
-            RotY += Input.GetAxis("Mouse Y") * SensivityY;
-            RotY = ClampAngle(RotY, MinY, MaxY);
-            Quaternion YQuaternion = Quaternion.AngleAxis(RotY, -Vector3.right);
-            transform.localRotation = originalRotation * YQuaternion;
-        }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position, Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position + new Vector3(0, ForwardPoint.position.y - transform.position.y, 0), Time.deltaTime * CurrentSpeed());
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position, Time.deltaTime * -speed);
+            transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position + new Vector3(0, ForwardPoint.position.y - transform.position.y, 0), Time.deltaTime * -CurrentSpeed());
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * -speed);
+            transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * -CurrentSpeed());
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * CurrentSpeed());
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            transform.position = Vector3.MoveTowards(transform.position, Vector3.up, Time.deltaTime * JumpHeight);
+            transform.position = Vector3.MoveTowards(transform.position, UpPoint.position, Time.deltaTime * JumpHeight);
+        }
+        float CurrentSpeed()
+        {
+            if (Input.GetKey(KeyCode.LeftShift)) return RunSpeed;
+            else return WalkSpeed;
         }
     }
 }
