@@ -10,10 +10,13 @@ public class PersonController : MonoBehaviour
     [SerializeField] Transform ForwardPoint;
     [SerializeField] Transform RightPoint;
     [SerializeField] Transform UpPoint;
+    Rigidbody PlayersRigidbody;
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        if(GetComponent<Rigidbody>()) PlayersRigidbody = GetComponent<Rigidbody>();
+        else PlayersRigidbody = gameObject.AddComponent<Rigidbody>();
     }
     void Update()
     {
@@ -33,14 +36,25 @@ public class PersonController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * CurrentSpeed());
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && IsOnSurface())
         {
-            transform.position = Vector3.MoveTowards(transform.position, UpPoint.position, Time.deltaTime * JumpHeight);
+            //transform.position = Vector3.MoveTowards(transform.position, UpPoint.position, Time.deltaTime * JumpHeight);
+            Debug.Log("Jump");
+            PlayersRigidbody.AddForce(Vector3.up * JumpHeight);
         }
         float CurrentSpeed()
         {
             if (Input.GetKey(KeyCode.LeftShift)) return RunSpeed;
             else return WalkSpeed;
         }
+    }
+    bool IsOnSurface()
+    {
+        if(Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit))
+        {
+            if(Mathf.Abs(transform.position.y - hit.point.y) <= 1.1f) return true;
+            else return false;
+        }
+        return false;
     }
 }
