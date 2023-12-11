@@ -57,6 +57,7 @@ public class WindowsManager : MonoBehaviour
         public bool IsActivated;
         public void ChangeState() => ChangeState(!IsActivated);
         public void ChangeState(bool state) {
+            if (!WindowsManager.WMinstance.NoOpenedWindows && state) return;
             IsActivated = state;
             WindowObject.SetActive(state);
             WindowsManager.WMinstance.SetCursor();

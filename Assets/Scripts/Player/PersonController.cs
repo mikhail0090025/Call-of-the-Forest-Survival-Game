@@ -53,7 +53,7 @@ public class PersonController : MonoBehaviour
     {
         if(Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit))
         {
-            if(Mathf.Abs(transform.position.y - hit.point.y) <= 1.1f) return true;
+            if(Mathf.Abs(transform.position.y - hit.point.y) <= 1.5f) return true;
             else return false;
         }
         return false;
