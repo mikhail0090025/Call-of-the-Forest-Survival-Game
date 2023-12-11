@@ -20,6 +20,7 @@ public class PersonController : MonoBehaviour
     }
     void Update()
     {
+        if (!WindowsManager.WMinstance.NoOpenedWindows) return;
         if (Input.GetKey(KeyCode.W))
         {
             transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position + new Vector3(0, ForwardPoint.position.y - transform.position.y, 0), Time.deltaTime * CurrentSpeed());

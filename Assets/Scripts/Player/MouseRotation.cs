@@ -29,6 +29,7 @@ public class MouseRotation : MonoBehaviour
     }
     void Update()
     {
+        if (!WindowsManager.WMinstance.NoOpenedWindows) return;
         if (axes == RotationAxes.MouseXandY)
         {
             RotX += Input.GetAxis("Mouse X") * SensivityX;
