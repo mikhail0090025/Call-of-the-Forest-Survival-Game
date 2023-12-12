@@ -10,6 +10,22 @@ public class ItemsManager : MonoBehaviour
     {
         IMinstance = this;
     }
+    //Binary searching of item by ID
+    public Item FindByID(int id)
+    {
+        int start = 0;
+        int end = Items.Count - 1;
+        int index = 0;
+        while (start <= end)
+        {
+            index = ((end - start) / 2) + start;
+            if (Items[index].ID == id) return Items[index];
+            else if (Items[index].ID < id) start = index;
+            else end = index;
+        }
+        Debug.LogError($"Item with ID {id} was not found");
+        return null;
+    }
 }
 [System.Flags]
 public enum ItemType { None = 0, Food = 1, Gun = 2, Other = 4, Nature = 8}
@@ -21,11 +37,11 @@ public class Item
     [SerializeField]
     string name;
     [SerializeField]
-    Texture texture;
+    Sprite sprite;
     [SerializeField]
     ItemType type;
     public int ID => id;
     public string Name => name;
-    public Texture Texture => texture;
+    public Sprite Sprite => sprite;
     public ItemType ItemType => type;
 }

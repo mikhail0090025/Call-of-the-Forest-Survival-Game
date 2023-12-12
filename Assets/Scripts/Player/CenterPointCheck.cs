@@ -20,7 +20,9 @@ public class CenterPointCheck : MonoBehaviour
             if (script)
             {
                 if (hitInfo.distance <= script.distance) textInCenter.text = script.Text;
+                else textInCenter.text = "";
             }
+            else textInCenter.text = "";
         }
         else textInCenter.text = "";
     }
