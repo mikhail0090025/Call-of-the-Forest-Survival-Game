@@ -11,7 +11,8 @@ public class ItemsManager : MonoBehaviour
         IMinstance = this;
     }
 }
-public enum ItemType { Food, Gun, Other}
+[System.Flags]
+public enum ItemType { None = 0, Food = 1, Gun = 2, Other = 4, Nature = 8}
 [System.Serializable]
 public class Item
 {
