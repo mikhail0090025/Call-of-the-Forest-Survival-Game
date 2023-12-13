@@ -25,10 +25,19 @@ public class InventoryCell : MonoBehaviour
             if (Amount < 0) Amount = 0;
             Amount += amount;
         }
+        else if (ID == id_item) Amount += amount;
+        else Debug.Log("This cell already contains element with other id!");
     }
     public void SetUI()
     {
+        if(ID <= -1)
+        {
+            Text.text = "none";
+            Image.sprite = null;
+            return;
+        }
         Text.text = Amount + "x";
+        if(ItemsManager.IMinstance.FindByID(ID).Sprite != null)
         Image.sprite = ItemsManager.IMinstance.FindByID(ID).Sprite;
     }
     void Start()
