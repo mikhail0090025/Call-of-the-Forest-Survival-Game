@@ -17,9 +17,13 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] InventoryCell LeftHandCell;
     void Start()
     {
+        foreach (var cell in Cells)
+        {
+            cell.Init();
+        }
         AddItem(1, 45);
-        AddItem(2, 5);
-        RefreshInventoryUI();
+        AddItem(0, 5);
+        //RefreshInventoryUI();
     }
     void Update()
     {

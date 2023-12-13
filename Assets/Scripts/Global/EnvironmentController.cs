@@ -14,7 +14,7 @@ public class EnvironmentController : MonoBehaviour
     }
     void Save()
     {
-        UnityEditor.SceneManagement.EditorSceneManager.SaveScene(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene(), "Assets/Scenes/MyScene.unity");
+        //UnityEditor.SceneManagement.EditorSceneManager.SaveScene(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene(), "Assets/Scenes/MyScene.unity");
     }
     void Update()
     {

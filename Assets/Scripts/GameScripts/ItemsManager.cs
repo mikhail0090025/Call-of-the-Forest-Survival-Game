@@ -6,7 +6,7 @@ public class ItemsManager : MonoBehaviour
 {
     public List<Item> Items;
     public static ItemsManager IMinstance;
-    void Start()
+    void Awake()
     {
         IMinstance = this;
     }
@@ -20,10 +20,11 @@ public class ItemsManager : MonoBehaviour
         {
             index = ((end - start) / 2) + start;
             if (Items[index].ID == id) return Items[index];
-            else if (Items[index].ID < id) start = index;
-            else end = index;
+            else if (Items[index].ID < id) start = index + 1;
+            else end = index - 1;
+            Debug.Log("Searching item.....");
         }
-        Debug.LogError($"Item with ID {id} was not found");
+        Debug.LogException(new System.Exception($"Item with ID {id} was not found"));
         return null;
     }
 }

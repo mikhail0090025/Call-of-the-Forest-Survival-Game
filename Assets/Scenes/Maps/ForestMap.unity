@@ -11716,11 +11716,11 @@ MonoBehaviour:
   Items:
   - id: 0
     name: Stick
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 51682c5238c8c53448e0cf7f8c08f4c7, type: 3}
     type: 8
   - id: 1
     name: Leaf
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 060fe7ceeaedbdb44b464b83f3317166, type: 3}
     type: 8
 --- !u!4 &1512513020
 Transform:
