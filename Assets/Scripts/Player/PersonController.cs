@@ -6,10 +6,13 @@ public class PersonController : MonoBehaviour
 {
     [SerializeField] float WalkSpeed;
     [SerializeField] float RunSpeed;
+    [SerializeField] float CrouchSpeed;
     [SerializeField] float JumpHeight;
     [SerializeField] Transform ForwardPoint;
     [SerializeField] Transform RightPoint;
     [SerializeField] Transform UpPoint;
+    [SerializeField] Camera PlayerCamera;
+    Animator cam_anim;
     Rigidbody PlayersRigidbody;
     void Start()
     {
@@ -17,9 +20,11 @@ public class PersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         if(GetComponent<Rigidbody>()) PlayersRigidbody = GetComponent<Rigidbody>();
         else PlayersRigidbody = gameObject.AddComponent<Rigidbody>();
+        cam_anim = PlayerCamera.gameObject.GetComponent<Animator>();
     }
     void Update()
     {
+        cam_anim.speed = 1f;
         if (!WindowsManager.WMinstance.NoOpenedWindows) return;
         if (Input.GetKey(KeyCode.W))
         {
@@ -39,15 +44,28 @@ public class PersonController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space) && IsOnSurface())
         {
-            //transform.position = Vector3.MoveTowards(transform.position, UpPoint.position, Time.deltaTime * JumpHeight);
-            Debug.Log("Jump");
             PlayersRigidbody.AddForce(Vector3.up * JumpHeight);
         }
         float CurrentSpeed()
         {
-            if (Input.GetKey(KeyCode.LeftShift)) return RunSpeed;
-            else return WalkSpeed;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                cam_anim.speed = 3f;
+                return RunSpeed;
+            }
+            else if (Input.GetKey(KeyCode.LeftControl))
+            {
+                cam_anim.speed = 0.5f;
+                return CrouchSpeed;
+            }
+            else
+            {
+                cam_anim.speed = 3f;
+                return WalkSpeed;
+            }
         }
+        if(!Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl)) transform.localScale = new Vector3(1, 0.5f, 1);
+        else transform.localScale = new Vector3(1, 1, 1);
     }
     bool IsOnSurface()
     {
