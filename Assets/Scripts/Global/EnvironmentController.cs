@@ -41,4 +41,8 @@ public class GameTime
     {
         ticks = 0f;
     }
+    public void AddHours(float hours)
+    {
+        ticks += hours * RealSecondsInGameHour;
+    }
 }
