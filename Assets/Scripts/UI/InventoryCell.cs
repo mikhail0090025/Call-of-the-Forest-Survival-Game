@@ -30,28 +30,22 @@ public class InventoryCell : MonoBehaviour
     }
     public void SetUI()
     {
-        Debug.Log("SetUI start");
         if (ID <= -1)
         {
-            Debug.Log("ID <= -1");
             Text.text = "none";
             Image.sprite = null;
             return;
         }
-        Debug.Log("ID > -1");
         Text.text = Amount + "x";
-        Debug.Log(ItemsManager.IMinstance);
         var item = ItemsManager.IMinstance.FindByID(ID);
         if (item != null)
         {
-            Debug.Log("Item found");
             Image.sprite = item.Sprite;
         }
         else
         {
             Debug.Log("Item not found");
         }
-        Debug.Log("SetUI end");
     }
     void Start()
     {

@@ -26,7 +26,7 @@ public class WaitingWindowController : MonoBehaviour
         CircleAnimator.speed = 1f / real_seconds;
         Time.timeScale = 0f;
 
-        yield return new WaitForSeconds(real_seconds);
+        yield return new WaitForSecondsRealtime(real_seconds);
 
         Time.timeScale = 1f;
         EnvironmentController.CurrentInstance.DateTime.AddHours(game_minutes / 60f);

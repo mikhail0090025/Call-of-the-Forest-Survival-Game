@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7068305551352750566}
   - component: {fileID: 3212231974365474305}
   - component: {fileID: -2930442918237659172}
+  - component: {fileID: -4820039598783751068}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -124,3 +125,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: Tree
   distance: 2
+--- !u!114 &-4820039598783751068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388380530136680353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe285d4a393b34e4582e64f793e5e1e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IDs: 
+  Amounts: 
+  GameMinutesToCollect: 20
