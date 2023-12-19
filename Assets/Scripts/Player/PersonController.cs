@@ -26,24 +26,16 @@ public class PersonController : MonoBehaviour
     {
         cam_anim.speed = 1f;
         if (!WindowsManager.WMinstance.NoOpenedWindows) return;
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position + new Vector3(0, ForwardPoint.position.y - transform.position.y, 0), Time.deltaTime * CurrentSpeed());
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position + new Vector3(0, ForwardPoint.position.y - transform.position.y, 0), Time.deltaTime * -CurrentSpeed());
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * -CurrentSpeed());
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * CurrentSpeed());
-        }
+
+        transform.position = Vector3.MoveTowards(transform.position, ForwardPoint.position + new Vector3(0, ForwardPoint.position.y - transform.position.y, 0), Time.deltaTime * CurrentSpeed() * Input.GetAxis("Vertical"));
+        transform.position = Vector3.MoveTowards(transform.position, RightPoint.position, Time.deltaTime * CurrentSpeed() * Input.GetAxis("Horizontal"));
         if (Input.GetKey(KeyCode.Space) && IsOnSurface())
         {
+            PlayersRigidbody.AddForce(Vector3.up * JumpHeight);
+        }
+        if (Input.GetButton("Jump") && IsOnSurface())
+        {
+            Debug.Log("Button for jump works");
             PlayersRigidbody.AddForce(Vector3.up * JumpHeight);
         }
         float CurrentSpeed()
