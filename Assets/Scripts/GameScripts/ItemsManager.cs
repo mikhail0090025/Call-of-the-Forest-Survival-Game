@@ -22,7 +22,6 @@ public class ItemsManager : MonoBehaviour
             if (Items[index].ID == id) return Items[index];
             else if (Items[index].ID < id) start = index + 1;
             else end = index - 1;
-            Debug.Log("Searching item.....");
         }
         Debug.LogException(new System.Exception($"Item with ID {id} was not found"));
         return null;

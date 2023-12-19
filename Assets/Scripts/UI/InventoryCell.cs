@@ -11,7 +11,7 @@ public class InventoryCell : MonoBehaviour
     public bool IsEmpty => Amount <= 0;
     [SerializeField] Image Image;
     [SerializeField] Button Button;
-    [SerializeField] TMP_Text Text;
+    [SerializeField] TMP_Text CellBottomText;
     public InventoryCell()
     {
         ID = -1;
@@ -32,11 +32,11 @@ public class InventoryCell : MonoBehaviour
     {
         if (ID <= -1)
         {
-            Text.text = "none";
+            CellBottomText.text = "none";
             Image.sprite = null;
             return;
         }
-        Text.text = Amount + "x";
+        CellBottomText.text = Amount + "x";
         var item = ItemsManager.IMinstance.FindByID(ID);
         if (item != null)
         {
@@ -55,6 +55,8 @@ public class InventoryCell : MonoBehaviour
     {
         Image = GetComponentInChildren<Image>();
         Button = GetComponentInChildren<Button>();
-        Text = GetComponentInChildren<TMP_Text>();
+        CellBottomText = GetComponentInChildren<TMP_Text>();
+        CellBottomText.fontSize = 18;
+        CellBottomText.color = Color.white;
     }
 }

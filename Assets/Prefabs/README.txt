@@ -1,0 +1,1 @@
+Prefabs from folder GLOBAL have to be in each scene

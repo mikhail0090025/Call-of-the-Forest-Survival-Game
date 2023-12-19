@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Tree
-  distance: 2
+  distance: 3
 --- !u!114 &-4820039598783751068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,4 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IDs: 
   Amounts: 
+  DistanceToCollect: 3
   GameMinutesToCollect: 20
+  TreeStump: {fileID: 5708419405982004760, guid: 9ef0fd79e9fc34842aca535bd2fc59d5, type: 3}
