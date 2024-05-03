@@ -170,11 +170,12 @@ GameObject:
   - component: {fileID: 3853511722092136734}
   - component: {fileID: 3853511722092136733}
   - component: {fileID: 3853511722092136735}
-  - component: {fileID: 3853511722092136720}
   - component: {fileID: 3853511722092136721}
+  - component: {fileID: 259057974}
+  - component: {fileID: 259057975}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,14 +213,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2038b7bf456466549b8705c347207651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 3
-  RunSpeed: 7
-  CrouchSpeed: 0
-  JumpHeight: 5
+  WalkSpeed: 2
+  RunSpeed: 5
+  CrouchSpeed: 1
+  JumpHeight: 550
   ForwardPoint: {fileID: 3853511723782767480}
   RightPoint: {fileID: 3853511723502296203}
   UpPoint: {fileID: 3853511722450327022}
-  PlayerCamera: {fileID: 0}
+  PlayerCamera: {fileID: 3853511722470850206}
 --- !u!54 &3853511722092136733
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -245,23 +246,10 @@ BoxCollider:
   m_GameObject: {fileID: 3853511722092136731}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &3853511722092136720
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3853511722092136731}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.72, z: 1}
+  m_Center: {x: 0, y: -0.13969612, z: 0}
 --- !u!114 &3853511722092136721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +269,72 @@ MonoBehaviour:
   MaxX: 360
   MinY: -360
   MaxY: 360
+--- !u!114 &259057974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853511722092136731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c596e27c9bdc28b40bc8d7a1ded0393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerCamera: {fileID: 3853511722470850206}
+  textInCenter: {fileID: 0}
+--- !u!114 &259057975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853511722092136731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8531eac465b624c4d8aeb9f1f2e11af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 36
+  Cells:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  GunCell: {fileID: 0}
+  LeftHandCell: {fileID: 0}
 --- !u!1 &3853511722450327021
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +378,7 @@ GameObject:
   - component: {fileID: 3853511722470850206}
   - component: {fileID: 3853511722470850205}
   - component: {fileID: 3853511722470850192}
+  - component: {fileID: 2013828696}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -416,6 +471,27 @@ MonoBehaviour:
   MaxX: 360
   MinY: -90
   MaxY: 90
+--- !u!95 &2013828696
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853511722470850204}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f75673390d039be44bf240c92a7d8249, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3853511723502296202
 GameObject:
   m_ObjectHideFlags: 0

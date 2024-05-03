@@ -62,6 +62,42 @@ public class PlayerInventory : MonoBehaviour
         Debug.LogException(new System.Exception($"There is no empty cells"));
         return null;
     }
+
+    public bool IsCellWithID(int id)
+    {
+        foreach (var cell in Cells)
+        {
+            if (cell.ID == id) return true;
+        }
+        return false;
+    }
+
+    private void RemoveItem(int id, int count)
+    {
+        if (!IsCellWithID(id))
+        {
+            Debug.LogException(new System.Exception($"In inventory is not item with ID {id}"));
+        }
+        FindCell(id).Remove(count);
+    }
+    public void RemoveItem(int id, int count, out bool WasRemoved)
+    {
+        if (!IsCellWithID(id))
+        {
+            WasRemoved = false;
+            return;
+        }
+        try
+        {
+            FindCell(id).Remove(count);
+            WasRemoved = true;
+        }
+        catch (System.Exception)
+        {
+            WasRemoved = false;
+            throw;
+        }
+    }
     private void RefreshInventoryUI()
     {
         GunCell.SetUI();

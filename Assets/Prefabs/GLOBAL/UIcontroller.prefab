@@ -52,6 +52,9 @@ MonoBehaviour:
   - WindowObject: {fileID: 0}
     KeyToOpenClose: 101
     IsActivated: 0
+  - WindowObject: {fileID: 0}
+    KeyToOpenClose: 98
+    IsActivated: 0
 --- !u!114 &8916171683758812894
 MonoBehaviour:
   m_ObjectHideFlags: 0

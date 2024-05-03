@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class InventoryCell : MonoBehaviour
 {
@@ -27,6 +28,19 @@ public class InventoryCell : MonoBehaviour
         }
         else if (ID == id_item) Amount += amount;
         else Debug.Log("This cell already contains element with other id!");
+    }
+    public void Remove(int amount)
+    {
+        if (IsEmpty || ID == -1)
+        {
+            Debug.LogException(new System.Exception("Cell is empty"));
+        }
+        else if (Amount < amount) Debug.LogException(new System.Exception("You are trying to take more than cell has!"));
+        Amount -= amount;
+        if(Amount == 0)
+        {
+            ID = -1;
+        }
     }
     public void SetUI()
     {

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Build : MonoBehaviour
+public class Torch : Build
 {
-    [SerializeField] protected string Name;
-    [SerializeField] protected string Description;
+    // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    // Update is called once per frame
     void Update()
     {
         
