@@ -6,12 +6,14 @@ public abstract class Build : MonoBehaviour
 {
     [SerializeField] protected string Name;
     [SerializeField] protected string Description;
-    void Start()
+    virtual protected void Start()
     {
-        
+        var text = this.gameObject.AddComponent<TextOnWatching>();
+        text.distance = 5;
+        text.Text = Name + "\n" + Description;
     }
 
-    void Update()
+    virtual protected void Update()
     {
         
     }

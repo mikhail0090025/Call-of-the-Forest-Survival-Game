@@ -31,7 +31,7 @@ public class WindowsManager : MonoBehaviour
             Cursor.visible = true;
         }
     }
-    void DeactivateAll()
+    public void DeactivateAll()
     {
         foreach (var window in Windows)
         {

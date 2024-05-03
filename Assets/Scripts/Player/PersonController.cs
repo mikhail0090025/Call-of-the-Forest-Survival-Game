@@ -35,7 +35,6 @@ public class PersonController : MonoBehaviour
         }
         if (Input.GetButton("Jump") && IsOnSurface())
         {
-            Debug.Log("Button for jump works");
             PlayersRigidbody.AddForce(Vector3.up * JumpHeight);
         }
         float CurrentSpeed()

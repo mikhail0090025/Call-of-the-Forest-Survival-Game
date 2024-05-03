@@ -10,12 +10,14 @@ public class TreeCollection : CollectableObject
     [SerializeField] GameObject TreeStump;
     protected override void Start()
     {
-        base.IDs = new int[2];
-        base.Amounts = new int[2];
+        base.IDs = new int[3];
+        base.Amounts = new int[3];
         IDs[0] = 0; // first ID is ID of stick
         IDs[1] = 1; // second ID is ID of leaf
+        IDs[2] = 2; // third ID is ID of wood
         Amounts[0] = Random.Range(5, 12);
         Amounts[1] = Random.Range(20, 45);
+        Amounts[2] = Random.Range(2, 5);
         base.Start();
     }
     protected override void OnMouseDown()

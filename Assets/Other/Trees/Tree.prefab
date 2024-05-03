@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: Tree Data
   m_EditorClassIdentifier: 
   _uniqueID: 431
-  materialHash: dc777da23ce6d34ade7ae947374bbc60215482368
+  materialHash: e2b3be52047d60194a5d99af65120927215482368
   root:
     _uniqueID: 1
     seed: 1982759
@@ -13594,7 +13594,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Cutoff: 0.123
+    - _Cutoff: 0.169
     - _ShadowOffsetScale: 1
     - _ShadowStrength: 0.8
     - _SquashAmount: 1

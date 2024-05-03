@@ -9,7 +9,6 @@ public class BuildsProject : MonoBehaviour
     public List<Item_> materials => Materials;
     [SerializeField]
     protected GameObject ResultBuild;
-    [SerializeField]
     protected TextOnWatching TextOnWatching;
     public const int DistanceToContact = 5; // Distance, which is neccessary to contact with project
     void Start()
