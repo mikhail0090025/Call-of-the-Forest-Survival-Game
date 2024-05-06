@@ -5,6 +5,7 @@ using UnityEngine;
 public class WindowsManager : MonoBehaviour
 {
     [SerializeField] List<Window> Windows;
+    public List<Window> windows => Windows;
     public static WindowsManager WMinstance;
     public bool NoOpenedWindows { get {
             foreach (var window in Windows)
@@ -50,7 +51,7 @@ public class WindowsManager : MonoBehaviour
         }
     }
     [System.Serializable]
-    class Window
+    public class Window
     {
         public GameObject WindowObject;
         public KeyCode KeyToOpenClose;

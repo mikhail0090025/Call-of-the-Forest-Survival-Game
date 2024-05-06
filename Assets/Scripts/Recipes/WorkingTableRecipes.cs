@@ -19,7 +19,9 @@ public class WorkingTableRecipes : MonoBehaviour
 [Serializable]
 public class WorkingTableRecipe
 {
+    [SerializeField]
     protected List<OneItem> neededItems;
+    [SerializeField]
     protected OneItem result;
     public List<OneItem> NeededItems => neededItems;
     public OneItem Result => result;
