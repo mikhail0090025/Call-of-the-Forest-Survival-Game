@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,18 +10,25 @@ public class WorkingWindow : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Dropdown ReceipesDropdown;
     [SerializeField]
-    private GameObject ReceipeCell;
+    private GameObject RecipeCell;
+    [SerializeField]
+    private List<GameObject> RecipeCells;
+    private List<ButtonAndRecipe> ButtonRecipePair;
     const int OffsetX = 60;
     const int OffsetY = 90;
-    const int StartX = -150;
-    const int StartY = 100;
+    const int StartOffsetX = -120;
+    const int StartOffsetY = -100;
+    [SerializeField] private Transform StartReceipesPoint;
     const int IconsInRow = 5;
     [SerializeField]
     private GameObject Viewport;
+    [SerializeField]
+    private TMPro.TMP_Text ReceipeDescription;
     void Start()
     {
+        ButtonRecipePair = new List<ButtonAndRecipe>();
         //WorkingTableRecipes = GameObject.FindObjectOfType<WorkingTableRecipes>();
-        ShowReceipes();
+        ShowRecipes();
     }
 
     // Update is called once per frame
@@ -30,12 +36,13 @@ public class WorkingWindow : MonoBehaviour
     {
         
     }
-    void ShowReceipes()
+    void ShowRecipes()
     {
         while (Viewport.transform.childCount > 0)
         {
             Destroy(Viewport.transform.GetChild(0).gameObject);
         }
+        RecipeCells = new List<GameObject>();
         if (ReceipesDropdown.value == 0)
         {
             for (int i = 0; i < WorkingTableRecipes.WorkingTableRecipesList.Count; i++)
@@ -43,12 +50,38 @@ public class WorkingWindow : MonoBehaviour
                 var recipe = WorkingTableRecipes.WorkingTableRecipesList[i];
                 var id = recipe.Result.ID;
                 var count = recipe.Result.Count;
-                //var Icon = Instantiate(ReceipeCell, Viewport.transform.position + new Vector3((i * OffsetX) + StartX, StartY, 0), Quaternion.identity, Viewport.transform);
-                var Icon = Instantiate(ReceipeCell, Viewport.transform.position, Quaternion.identity, Viewport.transform);
-                Icon.transform.position = Viewport.transform.position;
+                var Icon = Instantiate(RecipeCell, Viewport.transform.position, Quaternion.identity);
+                Icon.transform.SetParent(Viewport.transform);
+                Icon.transform.localPosition = new Vector3(StartOffsetX,StartOffsetY,0);
                 Icon.transform.Find("ItemIcon").gameObject.GetComponent<Image>().sprite = ItemsManager.IMinstance.FindByID(id).Sprite;
                 Icon.GetComponentInChildren<TMPro.TMP_Text>().text = $"{count}X";
+                RecipeCells.Add(Icon);
+                Icon.GetComponentInChildren<Button>().onClick.AddListener(() =>
+                {
+                    ShowRecipe(recipe);
+                });
+                ButtonRecipePair.Add(new ButtonAndRecipe(Icon.GetComponentInChildren<Button>(), recipe));
             }
         }
+    }
+    void ShowRecipe(WorkingTableRecipe recipe)
+    {
+        ReceipeDescription.text = "Need:\n";
+        foreach (var item in recipe.NeededItems)
+        {
+            ReceipeDescription.text += ItemsManager.IMinstance.FindByID(item.ID).Name + ": " + item.Count + '\n';
+        }
+        ReceipeDescription.text += "Result:\n";
+        ReceipeDescription.text += ItemsManager.IMinstance.FindByID(recipe.Result.ID).Name + ": " + recipe.Result.Count;
+    }
+}
+class ButtonAndRecipe
+{
+    public Button Button;
+    public WorkingTableRecipe Recipe;
+    public ButtonAndRecipe(Button button, WorkingTableRecipe recipe)
+    {
+        Button = button;
+        Recipe = recipe;
     }
 }
