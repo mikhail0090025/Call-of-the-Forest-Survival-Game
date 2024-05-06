@@ -27,7 +27,8 @@ public class CenterPointCheck : MonoBehaviour
 
             var inventory = this.gameObject.GetComponent<PlayerInventory>();
 
-            if (projectScript && Input.GetMouseButtonDown(0) && hitInfo.distance < BuildsProject.DistanceToContact)
+            // Build project
+            if (projectScript && Input.GetMouseButtonDown(0) && hitInfo.distance < BuildsProject.DistanceToContact && !BuildingsWindow.ProjectSelected)
             {
                 foreach (var item in projectScript.materials)
                 {

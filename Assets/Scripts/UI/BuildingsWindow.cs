@@ -30,18 +30,22 @@ public class BuildingsWindow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ProjectSelected)
+        if (ProjectSelected)
         {
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            if(Physics.Raycast(ray, out RaycastHit hitInfo))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
                 CurrentProject.transform.position = hitInfo.point;
             }
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 ProjectSelected = false;
                 CurrentProject.GetComponent<Collider>().enabled = true;
                 Debug.Log("Project set!");
+            }
+            if (Input.GetKey(KeyCode.R))
+            {
+                CurrentProject.transform.Rotate(0f, 40f * Time.deltaTime, 0f);
             }
         }
     }
