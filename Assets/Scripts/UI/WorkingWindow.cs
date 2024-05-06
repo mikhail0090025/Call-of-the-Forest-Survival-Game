@@ -24,11 +24,43 @@ public class WorkingWindow : MonoBehaviour
     private GameObject Viewport;
     [SerializeField]
     private TMPro.TMP_Text ReceipeDescription;
+    [SerializeField]
+    private Button CreateButton;
+    [SerializeField]
+    private Button CloseButton;
+    private WorkingTableRecipe SelectedRecipe;
     void Start()
     {
         ButtonRecipePair = new List<ButtonAndRecipe>();
         //WorkingTableRecipes = GameObject.FindObjectOfType<WorkingTableRecipes>();
         ShowRecipes();
+        CloseButton.onClick.AddListener(delegate
+        {
+            WindowsManager.WMinstance.windows[WorkingTable.WindowIndex_].ChangeState(false);
+        });
+        CreateButton.onClick.AddListener(delegate
+        {
+            if(SelectedRecipe != null)
+            {
+                var playersInventory = FindObjectOfType<PlayerInventory>();
+                foreach (var item in SelectedRecipe.NeededItems)
+                {
+                    if(!playersInventory.IsItem(item.ID, item.Count))
+                    {
+                        Debug.LogError("Not enough items");
+                        return;
+                    }
+                }
+
+                foreach (var item in SelectedRecipe.NeededItems)
+                {
+                    playersInventory.RemoveItem(item.ID, item.Count, out bool WasRemoved);
+                    Debug.Log(WasRemoved);
+                }
+
+                playersInventory.AddItem(SelectedRecipe.Result.ID, SelectedRecipe.Result.Count);
+            }
+        });
     }
 
     // Update is called once per frame
@@ -58,6 +90,7 @@ public class WorkingWindow : MonoBehaviour
                 RecipeCells.Add(Icon);
                 Icon.GetComponentInChildren<Button>().onClick.AddListener(() =>
                 {
+                    SelectedRecipe = recipe;
                     ShowRecipe(recipe);
                 });
                 ButtonRecipePair.Add(new ButtonAndRecipe(Icon.GetComponentInChildren<Button>(), recipe));

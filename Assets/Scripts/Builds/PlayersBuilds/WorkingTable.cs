@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorkingTable : Build, IOpenWindow
 {
     public int WindowIndex { get => 3; }
+    public static int WindowIndex_ { get; private set; }
 
     public void OnMouseDown()
     {
@@ -13,6 +14,7 @@ public class WorkingTable : Build, IOpenWindow
 
     protected override void Start()
     {
+        WindowIndex_ = WindowIndex;
         base.Start();
     }
 

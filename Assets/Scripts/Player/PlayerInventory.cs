@@ -98,6 +98,15 @@ public class PlayerInventory : MonoBehaviour
             throw;
         }
     }
+
+    public bool IsItem(int id, int count)
+    {
+        if (IsCellWithID((int)id))
+        {
+            if (FindCell(id).Amount >= count) return true;
+        }
+        return false;
+    }
     private void RefreshInventoryUI()
     {
         GunCell.SetUI();

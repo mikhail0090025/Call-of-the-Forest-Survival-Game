@@ -40,6 +40,8 @@ public class Item
     Sprite sprite;
     [SerializeField]
     ItemType type;
+    [SerializeField]
+    GameObject Hand; // If item can be held in hand
     public int ID => id;
     public string Name => name;
     public Sprite Sprite => sprite;
