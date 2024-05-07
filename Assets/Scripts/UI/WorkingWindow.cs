@@ -16,7 +16,7 @@ public class WorkingWindow : MonoBehaviour
     private List<ButtonAndRecipe> ButtonRecipePair;
     const int OffsetX = 60;
     const int OffsetY = 90;
-    const int StartOffsetX = -120;
+    const int StartOffsetX = 50;
     const int StartOffsetY = -100;
     [SerializeField] private Transform StartReceipesPoint;
     const int IconsInRow = 5;
