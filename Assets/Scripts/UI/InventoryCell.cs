@@ -42,6 +42,12 @@ public class InventoryCell : MonoBehaviour
             ID = -1;
         }
     }
+
+    public void Reset()
+    {
+        ID = -1;
+        Amount = 0;
+    }
     public void SetUI()
     {
         if (ID <= -1)

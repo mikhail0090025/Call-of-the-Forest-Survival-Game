@@ -9,6 +9,8 @@ public class CollectableObject : MonoBehaviour
     // Amounts of objects that will be collected on click
     [SerializeField] protected int[] Amounts;
     [SerializeField] protected int DistanceToCollect = 2;
+    protected TextOnWatching TextOnWatching;
+    [SerializeField] protected string Text_;
     protected virtual void Start()
     {
         // Throwing exceptions on errors
@@ -21,6 +23,9 @@ public class CollectableObject : MonoBehaviour
         {
             if (Amount <= 0) Debug.LogException(new System.Exception("Some amount(s) is(are) invalid"));
         }
+        TextOnWatching = gameObject.AddComponent<TextOnWatching>();
+        TextOnWatching.distance = DistanceToCollect;
+        TextOnWatching.Text = Text_;
     }
     // Collecting
     protected virtual void OnMouseDown()

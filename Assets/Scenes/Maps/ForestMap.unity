@@ -7731,6 +7731,7 @@ GameObject:
   - component: {fileID: 1221260809}
   - component: {fileID: 3853511723124332078}
   - component: {fileID: 3853511723124332079}
+  - component: {fileID: 3853511723124332080}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -8811,37 +8812,30 @@ MonoBehaviour:
     name: Stick
     sprite: {fileID: 21300000, guid: 51682c5238c8c53448e0cf7f8c08f4c7, type: 3}
     type: 8
-    Hand: {fileID: 0}
   - id: 1
     name: Leaf
     sprite: {fileID: 21300000, guid: 060fe7ceeaedbdb44b464b83f3317166, type: 3}
     type: 8
-    Hand: {fileID: 0}
   - id: 2
     name: Wood
     sprite: {fileID: 21300000, guid: 2e56be6d69d8f4a489a38ab9a219f576, type: 3}
     type: 8
-    Hand: {fileID: 0}
   - id: 3
     name: Paper
     sprite: {fileID: 21300000, guid: 2215036b208b99142ac959f25c8401bd, type: 3}
     type: 4
-    Hand: {fileID: 0}
   - id: 4
     name: Sand
     sprite: {fileID: 21300000, guid: d81fc2c4e0a5b1549a7790f850d07265, type: 3}
     type: 8
-    Hand: {fileID: 0}
   - id: 5
     name: Axe
     sprite: {fileID: 21300000, guid: 641dedb378f48904c901cbe901ed18c1, type: 3}
     type: 2
-    Hand: {fileID: 0}
   - id: 6
     name: Stone
     sprite: {fileID: 21300000, guid: 345830476ae383f4d9448ce0cd7b7978, type: 3}
     type: 8
-    Hand: {fileID: 0}
 --- !u!4 &1512513020
 Transform:
   m_ObjectHideFlags: 0
@@ -11525,7 +11519,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -13169,6 +13162,21 @@ MonoBehaviour:
   - {fileID: 4036581440871461096}
   GunCell: {fileID: 4036581441895688380}
   LeftHandCell: {fileID: 4036581441482829018}
+--- !u!114 &3853511723124332080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221260803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c1a87a163cfac34488702c19e93cb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdsGun: 0
+  gunID: 0
+  inventory: {fileID: 3853511723124332079}
 --- !u!114 &4036581440753367872
 MonoBehaviour:
   m_ObjectHideFlags: 0

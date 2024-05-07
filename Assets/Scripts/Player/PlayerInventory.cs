@@ -15,6 +15,9 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] InventoryCell GunCell;
     [Header("Left hand")]
     [SerializeField] InventoryCell LeftHandCell;
+    public InventoryCell GunCell_ => GunCell;
+    public InventoryCell LeftHandCell_ => LeftHandCell;
+    public List<InventoryCell> Cells_ => Cells;
     void Start()
     {
         foreach (var cell in Cells)
@@ -107,7 +110,7 @@ public class PlayerInventory : MonoBehaviour
         }
         return false;
     }
-    private void RefreshInventoryUI()
+    public void RefreshInventoryUI()
     {
         GunCell.SetUI();
         LeftHandCell.SetUI();
