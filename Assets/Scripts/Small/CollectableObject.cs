@@ -32,8 +32,23 @@ public class CollectableObject : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    public void AddPair(IdAmountPair idAmountPair)
+    {
+        IdAmountPairs.Add(idAmountPair);
+    }
+
+    public void SetDistance(int distance)
+    {
+        DistanceToCollect = distance;
+    }
+
+    public void SetText(string text)
+    {
+        Text_ = text;
+    }
     [Serializable]
-    protected class IdAmountPair
+    public class IdAmountPair
     {
         public int ID; public int Amount;
         public IdAmountPair(int id, int amount)
