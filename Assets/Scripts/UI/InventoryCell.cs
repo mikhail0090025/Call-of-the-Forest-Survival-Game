@@ -13,6 +13,7 @@ public class InventoryCell : MonoBehaviour
     [SerializeField] Image Image;
     [SerializeField] Button Button;
     [SerializeField] TMP_Text CellBottomText;
+    public Button Button_ => Button;
     public InventoryCell()
     {
         ID = -1;

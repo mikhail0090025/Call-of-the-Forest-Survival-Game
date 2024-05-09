@@ -15,21 +15,32 @@ public class PlayersGun : MonoBehaviour
     public int GunID => gunID;
     [SerializeField]
     PlayerInventory inventory;
+    [SerializeField]
     void Start()
     {
         holdsGun = false;
         gunID = -1;
-    }
-
-    public void OnBeforeSerialize()
-    {
-
+        ActivateCurrentGunObject();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0) && gunID != -1)
+        {
+            var gun = GunObjectById(gunID);
+            gun.animator.SetTrigger("Hit");
+        }
+    }
+    private GunParameters GunObjectById(int id)
+    {
+        foreach (var gun in gunsParameters)
+        {
+            if (gun.ID == id)
+                return gun;
+        }
+        Debug.LogException(new Exception("ID of not existing gun was given!"));
+        return null;
     }
 
     public void ReturnGun()
@@ -41,7 +52,7 @@ public class PlayersGun : MonoBehaviour
         inventory.RefreshInventoryUI();
         ActivateCurrentGunObject();
     }
-    private void ActivateCurrentGunObject()
+    public void ActivateCurrentGunObject()
     {
         if (gunID == -1)
         {
@@ -63,8 +74,10 @@ public class PlayersGun : MonoBehaviour
 
     public void TakeGun(int ID, bool FromInventory)
     {
-        if (ItemsManager.IMinstance.Items.Find(item => item.ID == ID).ItemType != ItemType.Gun)
+        if (ID <= -1) Debug.LogException(new Exception($"Invalid ID {ID}"));
+        if (ItemsManager.IMinstance.FindByID(ID).ItemType != ItemType.Gun)
         {
+            Debug.Log(ItemsManager.IMinstance.Items.Find(item => item.ID == ID).ItemType);
             Debug.LogException(new System.Exception("Given item is not gun!"));
         }
         if(FromInventory)
@@ -96,5 +109,6 @@ public class PlayersGun : MonoBehaviour
         public float MinDamage;
         public float MaxDamage;
         public float HitRate; // Per second
+        public Animator animator;
     }
 }

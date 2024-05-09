@@ -23,6 +23,19 @@ public class PlayerInventory : MonoBehaviour
         foreach (var cell in Cells)
         {
             cell.Init();
+            cell.Button_.onClick.AddListener(delegate
+            {
+                // GETTING GUN TO GUNS CELL
+                if(GunCell.ID == -1 && ItemsManager.IMinstance.FindByID(cell.ID).ItemType == ItemType.Gun)
+                {
+                    GunCell.Add(cell.ID, 1);
+                    var playersGunScript = FindObjectOfType<PlayersGun>();
+                    playersGunScript.TakeGun(cell.ID, false);
+                    playersGunScript.ActivateCurrentGunObject();
+                    cell.Reset();
+                }
+                RefreshInventoryUI();
+            });
         }
         AddItem(1, 45);
         AddItem(0, 5);

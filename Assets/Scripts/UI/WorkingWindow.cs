@@ -55,7 +55,6 @@ public class WorkingWindow : MonoBehaviour
                 foreach (var item in SelectedRecipe.NeededItems)
                 {
                     playersInventory.RemoveItem(item.ID, item.Count, out bool WasRemoved);
-                    Debug.Log(WasRemoved);
                 }
 
                 playersInventory.AddItem(SelectedRecipe.Result.ID, SelectedRecipe.Result.Count);
