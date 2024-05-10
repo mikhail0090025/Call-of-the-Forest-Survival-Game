@@ -15,7 +15,7 @@ public class EnvironmentController : MonoBehaviour
     const float MinExposure = 0.1f;
     void Start()
     {
-        DateTime = new GameTime(0,3);
+        DateTime = new GameTime(0,7);
         CurrentInstance = this;
         
     }
@@ -26,7 +26,6 @@ public class EnvironmentController : MonoBehaviour
     void Update()
     {
         TimeLable.text = $"{DateTime.day} days, {DateTime.hour.ToString("D2")}:{DateTime.minute.ToString("D2")}";
-        Debug.Log(DateTime.getDayProgress());
         DateTime.UpdTicks(Time.deltaTime);
         var dayProgress = DateTime.getDayProgress();
         if (dayProgress < (4f / 24f) || dayProgress > (22f / 24f))

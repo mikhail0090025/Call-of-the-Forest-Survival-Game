@@ -41,7 +41,6 @@ public class CenterPointCheck : MonoBehaviour
                             item.CurrentCount++;
                             projectScript.Refresh();
                             projectScript.Check();
-                            Debug.Log("Item to build project was added!");
                             break;
                         }
                     }
