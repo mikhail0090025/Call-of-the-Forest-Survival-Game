@@ -11,12 +11,19 @@ public class CollectableObject : MonoBehaviour
     [SerializeField] protected string Text_;
     protected virtual void Start()
     {
+        if(IdAmountPairs == null) IdAmountPairs = new List<IdAmountPair>();
         // Throwing exceptions on errors
         foreach (var item in IdAmountPairs)
         {
             if (item.ID < 0) Debug.LogException(new Exception("some ID(s) is(are) invalid"));
             if (item.Amount <= 0) Debug.LogException(new System.Exception("Some amount(s) is(are) invalid"));
         }
+        SetOtherScripts();
+    }
+
+    protected void SetOtherScripts()
+    {
+        if (GetComponent<TextOnWatching>()) Destroy(GetComponent<TextOnWatching>());
         TextOnWatching = gameObject.AddComponent<TextOnWatching>();
         TextOnWatching.distance = DistanceToCollect;
         TextOnWatching.Text = Text_;
@@ -33,9 +40,11 @@ public class CollectableObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void AddPair(IdAmountPair idAmountPair)
+    public void AddPair(int ID, int count)
     {
-        IdAmountPairs.Add(idAmountPair);
+        if (IdAmountPairs == null) IdAmountPairs = new List<IdAmountPair>();
+        IdAmountPairs.Add(new IdAmountPair(ID, count));
+        SetOtherScripts();
     }
 
     public void SetDistance(int distance)
@@ -46,6 +55,7 @@ public class CollectableObject : MonoBehaviour
     public void SetText(string text)
     {
         Text_ = text;
+        SetOtherScripts();
     }
     [Serializable]
     public class IdAmountPair
