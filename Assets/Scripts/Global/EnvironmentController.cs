@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,10 +11,13 @@ public class EnvironmentController : MonoBehaviour
     public GameTime DateTime;
     public static EnvironmentController CurrentInstance;
     [SerializeField] TMP_Text TimeLable;
+    [SerializeField] Light MainLight;
+    const float MinExposure = 0.1f;
     void Start()
     {
-        DateTime = new GameTime(0,8);
+        DateTime = new GameTime(0,3);
         CurrentInstance = this;
+        
     }
     void Save()
     {
@@ -24,6 +28,28 @@ public class EnvironmentController : MonoBehaviour
         TimeLable.text = $"{DateTime.day} days, {DateTime.hour.ToString("D2")}:{DateTime.minute.ToString("D2")}";
         Debug.Log(DateTime.getDayProgress());
         DateTime.UpdTicks(Time.deltaTime);
+        var dayProgress = DateTime.getDayProgress();
+        if (dayProgress < (4f / 24f) || dayProgress > (22f / 24f))
+        {
+            MainLight.intensity = 0;
+            RenderSettings.skybox.SetFloat("_Exposure", 0);
+        }
+        else if (dayProgress > (4f / 24f) && dayProgress < (8f / 24f))
+        {
+            MainLight.intensity = (dayProgress - (4f / 24f)) / (4f / 24f);
+            RenderSettings.skybox.SetFloat("_Exposure", MainLight.intensity);
+        }
+        else if (dayProgress > (19f / 24f) && dayProgress < (23f / 24f))
+        {
+            MainLight.intensity = 1f - ((dayProgress - (19f / 24f)) / (4f / 24f));
+            RenderSettings.skybox.SetFloat("_Exposure", MainLight.intensity);
+        }
+        else
+        {
+            MainLight.intensity = 1f;
+            RenderSettings.skybox.SetFloat("_Exposure", 1);
+        }
+        if (RenderSettings.skybox.GetFloat("_Exposure") < MinExposure) RenderSettings.skybox.SetFloat("_Exposure", MinExposure);
     }
 }
 [System.Serializable]
