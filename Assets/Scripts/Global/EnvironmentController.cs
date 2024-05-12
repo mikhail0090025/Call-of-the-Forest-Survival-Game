@@ -17,7 +17,6 @@ public class EnvironmentController : MonoBehaviour
     {
         DateTime = new GameTime(0,7);
         CurrentInstance = this;
-        
     }
     void Save()
     {
@@ -50,6 +49,7 @@ public class EnvironmentController : MonoBehaviour
         }
         if (RenderSettings.skybox.GetFloat("_Exposure") < MinExposure) RenderSettings.skybox.SetFloat("_Exposure", MinExposure);
     }
+    public static float HoursPassedPerFrame() => Time.deltaTime / GameTime.RealSecondsInGameHour;
 }
 [System.Serializable]
 public class GameTime
@@ -60,7 +60,7 @@ public class GameTime
     [SerializeField]
     private float ticks;
     public float Ticks { get => ticks; }
-    const int RealSecondsInGameHour = 30;
+    public const int RealSecondsInGameHour = 30;
     public void UpdTicks(float ticksToAdd)
     {
         ticks += ticksToAdd;

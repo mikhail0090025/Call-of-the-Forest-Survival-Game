@@ -12,6 +12,8 @@ public class MouseRotation : MonoBehaviour
     [SerializeField] float MaxX = 360f;
     [SerializeField] float MinY = -360f;
     [SerializeField] float MaxY = 360f;
+    [SerializeField] bool RestrictX;
+    [SerializeField] bool RestrictY;
     float RotX = 0f;
     float RotY = 0f;
     Quaternion originalRotation;
@@ -34,8 +36,8 @@ public class MouseRotation : MonoBehaviour
         {
             RotX += Input.GetAxis("Mouse X") * SensivityX;
             RotY += Input.GetAxis("Mouse Y") * SensivityY;
-            RotX = ClampAngle(RotX, MinX, MaxX);
-            RotY = ClampAngle(RotY, MinY, MaxY);
+            RotX = RestrictX ? ClampAngle(RotX, MinX, MaxX) : RotX;
+            RotY = RestrictY ? ClampAngle(RotY, MinY, MaxY) : RotY;
             Quaternion XQuaternion = Quaternion.AngleAxis(RotX, Vector3.up);
             Quaternion YQuaternion = Quaternion.AngleAxis(RotY, -Vector3.right);
             transform.localRotation = originalRotation * XQuaternion * YQuaternion;
@@ -43,14 +45,14 @@ public class MouseRotation : MonoBehaviour
         if (axes == RotationAxes.MouxeX)
         {
             RotX += Input.GetAxis("Mouse X") * SensivityX;
-            RotX = ClampAngle(RotX, MinX, MaxX);
+            RotX = RestrictX ? ClampAngle(RotX, MinX, MaxX) : RotX;
             Quaternion XQuaternion = Quaternion.AngleAxis(RotX, Vector3.up);
             transform.localRotation = originalRotation * XQuaternion;
         }
         if (axes == RotationAxes.MouseY)
         {
             RotY += Input.GetAxis("Mouse Y") * SensivityY;
-            RotY = ClampAngle(RotY, MinY, MaxY);
+            RotY = RestrictY ? ClampAngle(RotY, MinY, MaxY) : RotY;
             Quaternion YQuaternion = Quaternion.AngleAxis(RotY, -Vector3.right);
             transform.localRotation = originalRotation * YQuaternion;
         }

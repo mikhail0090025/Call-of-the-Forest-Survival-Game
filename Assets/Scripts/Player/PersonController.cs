@@ -58,6 +58,34 @@ public class PersonController : MonoBehaviour
         if(!Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl)) transform.localScale = new Vector3(1, 0.5f, 1);
         else transform.localScale = new Vector3(1, 1, 1);
     }
+    public bool IsRunning()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && (
+            Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.D)
+            ) &&
+            WindowsManager.WMinstance.NoOpenedWindows)
+        {
+            return true;
+        }
+        else return false;
+    }
+    public bool IsWalking()
+    {
+        if (!Input.GetKey(KeyCode.LeftShift) && (
+            Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.D)
+            ) &&
+            WindowsManager.WMinstance.NoOpenedWindows)
+        {
+            return true;
+        }
+        else return false;
+    }
     bool IsOnSurface()
     {
         if(Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit))

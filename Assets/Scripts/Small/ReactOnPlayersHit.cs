@@ -12,7 +12,7 @@ public abstract class ReactOnPlayersHit : MonoBehaviour
         if (collision.collider.tag == "PlayersGun")
         {
             var clipName = collision.collider.gameObject.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name; // Getting clip name in order to get, is player hitting or no
-            if(clipName == "AxeHit")
+            if(clipName == "Hit")
             OnPlayersHit();
         }
     }
