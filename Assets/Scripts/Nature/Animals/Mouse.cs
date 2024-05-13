@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoneWall : Build
+public class Mouse : Animal
 {
     // Start is called before the first frame update
-    protected override void Start()
+    override protected void Start()
     {
         base.Start();
+        base.agent.SetDestination(new Vector3(140, 40, 170));
+        base.GoToPoint(new Vector3(140, 40, 170));
     }
 
     // Update is called once per frame
-    protected override void Update()
+    override protected void Update()
     {
         base.Update();
     }

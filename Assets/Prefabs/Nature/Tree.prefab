@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3212231974365474305}
   - component: {fileID: -2930442918237659172}
   - component: {fileID: -4820039598783751068}
+  - component: {fileID: 825025104507517026}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -88,7 +89,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -137,8 +138,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe285d4a393b34e4582e64f793e5e1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IDs: 
-  Amounts: 
+  IdAmountPairs: []
   DistanceToCollect: 3
+  Text_: 
   GameMinutesToCollect: 20
   TreeStump: {fileID: 5708419405982004760, guid: 9ef0fd79e9fc34842aca535bd2fc59d5, type: 3}
+--- !u!208 &825025104507517026
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388380530136680353}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1, y: 8.428, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 6.558, z: 0}
+  m_TimeToStationary: 0.5
