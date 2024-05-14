@@ -18,8 +18,6 @@ public class DroppedItem : MonoBehaviour
         CollectableObjectScript.SetText(ItemsManager.IMinstance.FindByID(ItemId).Name + " X" + Amount);
         GetComponent<MeshRenderer>().material.mainTexture = ItemsManager.IMinstance.FindByID(ItemId).Sprite.texture;
         GetComponent<MeshRenderer>().material.SetFloat("Smoothness", 0f);
-        Debug.Log("Dropped item initialized");
-        Debug.Log(CollectableObjectScript);
     }
     public static void DropItem(int id, int count, Vector3 position)
     {

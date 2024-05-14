@@ -14,6 +14,21 @@ public abstract class Animal : MonoBehaviour
     [SerializeField] protected GameObject DeadPrefab;
     [Header("Defines in game")]
     [SerializeField] protected float CurrentHP;
+    [SerializeField] protected bool dontDespawn;
+    [SerializeField]
+    protected bool DontDespawn
+    {
+        get { return dontDespawn; }
+        set {
+            dontDespawn = value;
+            if (DontDespawn && GetComponent<DestroyOnDistance>()) Destroy(GetComponent<DestroyOnDistance>());
+            else if(!DontDespawn && !GetComponent<DestroyOnDistance>())
+            {
+                var component = gameObject.AddComponent<DestroyOnDistance>();
+                component.distance = DistanceToDestroy;
+            }
+        }
+    }
     [Header("Poison")]
     [SerializeField] protected bool IsPoisoned;
     [SerializeField] protected float PoisonStrength;
@@ -22,8 +37,10 @@ public abstract class Animal : MonoBehaviour
     [SerializeField] protected float Bleeding;
     [Header("Technical components (set automatically)")]
     [SerializeField] protected NavMeshAgent agent;
+    const int DistanceToDestroy = 60;
     protected virtual void Start()
     {
+        DontDespawn = false;
         CurrentHP = MaxHP;
         agent = GetComponent<NavMeshAgent>();
         ResetPoison();
@@ -44,6 +61,7 @@ public abstract class Animal : MonoBehaviour
         if(CurrentHP <= 0) {
             Dead();
         }
+        agent.speed = IsPoisoned ? SpeedIfPoisoned : Speed;
     }
     protected virtual void Poison(float strength, float seconds)
     {
@@ -86,6 +104,6 @@ public abstract class Animal : MonoBehaviour
     }
     protected virtual void GoToPoint(Vector3 point)
     {
-        agent.Move(point);
+        agent.SetDestination(point);
     }
 }

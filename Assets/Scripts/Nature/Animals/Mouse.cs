@@ -8,8 +8,8 @@ public class Mouse : Animal
     override protected void Start()
     {
         base.Start();
-        base.agent.SetDestination(new Vector3(140, 40, 170));
-        base.GoToPoint(new Vector3(140, 40, 170));
+        //base.agent.SetDestination(new Vector3(140, 40, 170));
+        base.GoToPoint(new Vector3(152, 40, 183));
     }
 
     // Update is called once per frame
