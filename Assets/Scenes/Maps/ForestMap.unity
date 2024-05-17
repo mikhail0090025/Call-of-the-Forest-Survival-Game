@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.0194774, g: 1.5483556, b: 2.5907404, a: 1}
+  m_IndirectSpecularColor: {r: 1.0172057, g: 1.544906, b: 2.5849552, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3570,6 +3570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 314434655}
   - component: {fileID: 314434654}
+  - component: {fileID: 314434656}
   m_Layer: 0
   m_Name: Recipes
   m_TagString: Untagged
@@ -3613,6 +3614,19 @@ Transform:
   m_Father: {fileID: 2860359632162330598}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &314434656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314434653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b29ab261366bd4448dfc42a012635db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FurnaceRecipesList: []
 --- !u!1 &326103239
 GameObject:
   m_ObjectHideFlags: 0
@@ -14144,6 +14158,7 @@ MonoBehaviour:
   SpeedIfPoisoned: 1.5
   DeadPrefab: {fileID: 0}
   CurrentHP: 0
+  dontDespawn: 0
   IsPoisoned: 0
   PoisonStrength: 0
   SecondsToFinishPoison: 0

@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Furnace : Build
 {
-    // Start is called before the first frame update
+    FurnaceRecipes FurnaceRecipes;
     protected override void Start()
     {
+        FurnaceRecipes = FindObjectOfType<FurnaceRecipes>();
         base.Start();
     }
 
@@ -14,5 +16,12 @@ public class Furnace : Build
     protected override void Update()
     {
         base.Update();
+    }
+    [Serializable]
+    public class FurnaceRecipe
+    {
+        public IdAmountItem GivenItems;
+        public IdAmountItem ReturnedItems;
+        public float GameHours;
     }
 }
